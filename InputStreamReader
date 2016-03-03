@@ -15,10 +15,16 @@ public class InputStreamConverter {
 
     private Context context;
 
+    //constructor
     public InputStreamConverter(Context context){
        setContext(context);
     }
-
+    
+    //empty constructor
+    public InputStreamConverter(){
+       
+    }
+    
     /**
      * @param is inputstream containing text characters
      *           can be textfile json file xml file
@@ -26,6 +32,21 @@ public class InputStreamConverter {
      * @throws IOException file not found
      */
     public String convertInputStreamToString(InputStream is)
+            throws IOException {
+
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(is));
+        String line = "";
+        String result = "";
+
+        while ((line = bufferedReader.readLine()) != null) {
+            result += line;
+        }
+
+        return result;
+    }
+    
+     public String convertInputStreamToString(Context context,InputStream is)
             throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(
